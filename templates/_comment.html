@@ -1,0 +1,9 @@
+{% load static bootstrap4 %}
+
+<div class = "card" >
+    <strong>{{ comment.author }}</strong>
+    <div class = "comments">
+        {{ comment.message }}
+    </div>
+    <small class = text-muted>{{ comment.created_at }}</small>
+</div>

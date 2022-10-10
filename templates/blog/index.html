@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block content %}
+    <div class = "container">
+        <div class = "row">
+            <div class = "col-sm-5">
+                <a href="{% url "blog:post_new" %} " class="btn btn-primary">새 포스팅쓰기</a>
+            </div>
+        </div>
+
+        <div class = "row">
+            <div class="col-sm-5">
+                {% for post in post_list %}
+                <div class = 'container'>
+                    <hr/>
+                    <div class="col-sm-5">{{ post.author }}</div>
+                    <div class="text-muted"><small>{{ post.created_at }}</small></div>
+                </div>
+                {% if post.photo %}
+                    <div><img src="{{ post.photo.url }}" width="200" height="200"> </div>
+                {% else %}
+                    Not Attached Photo
+                {% endif %}
+                    <div class="text"><strong>{{ post.caption }}</strong></div>
+                    <hr/>
+                                <div class="col-sm-5">
+                                {% include "ajax_comment.html" %}
+                                </div>
+                {% if post.publish == True %}
+                    <div class="text-muted"><small>Everyone can see the post</small></div>
+                {% else %}
+                    <div class="text-muted"><small>Only you can see the post</small></div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

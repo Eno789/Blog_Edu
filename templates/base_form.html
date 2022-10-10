@@ -1,0 +1,25 @@
+{% load bootstrap4 %}
+
+<div class = "card">
+    {% if form_title %}
+    <div class = "card-header">
+        {{ form.title }}
+    </div>
+    {% endif %}
+
+    <div class ='card-body'>
+        {% if form %}
+            <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            {% buttons %}
+                <button type="submit" class = "btn btn-success">
+                    {{ submit_name|default:"Submit" }}
+                </button>
+            {% endbuttons %}
+            </form>
+        {% else %}
+            <div><strong>Select form Objects</strong></div>
+        {% endif %}
+    </div>
+</div>
